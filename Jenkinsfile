@@ -1,13 +1,9 @@
 pipeline {
   agent any
-  tools { 
-        maven 'maven-3' 
-        jdk 'jdk8' 
-    }
   stages {
     stage('Build') {
       steps {
-        sh 'mvn clean package -Pprod'
+        sh 'mvn clean package -Pprod -DskipTests'
       }
     }
     stage('Test') {
@@ -55,6 +51,10 @@ pipeline {
         sleep 1
       }
     }
+  }
+  tools {
+    maven 'maven-3'
+    jdk 'jdk8'
   }
   options {
     disableConcurrentBuilds()
