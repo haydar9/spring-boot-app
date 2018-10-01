@@ -1,6 +1,10 @@
 pipeline {
   agent any
   stages {
+    withMaven(
+        // Maven installation declared in the Jenkins "Global Tool Configuration"
+        maven: 'M3'
+      )
     stage('Build') {
       steps {
         sh 'mvn clean package -Pprod'
